@@ -1,1 +1,318 @@
-fsdkjfhskdfhskdff
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FIXDESK — Smart Civic Reporting</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #f7fbff;
+      --card: #ffffff;
+      --accent: #0b78ff;
+      --accent-2: #14b8a6;
+      --muted: #6b7280;
+      --glass: rgba(255,255,255,0.6);
+      --radius: 12px;
+      --maxw: 1100px;
+      --shadow: 0 6px 18px rgba(12, 24, 40, 0.08);
+    }
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#f0f7ff 0%, #fbfcff 100%);
+      color:#0f1724;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    .container{
+      max-width:var(--maxw);
+      margin:32px auto;
+      padding:20px;
+    }
+
+    /* Header */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:28px;
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .logo {
+      width:48px;height:48px;border-radius:10px;
+      display:inline-grid;place-items:center;
+      background:linear-gradient(135deg,var(--accent),#6ec1ff);
+      color:white;font-weight:700;font-size:18px;
+      box-shadow: var(--shadow);
+    }
+    nav{display:flex;gap:16px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    .cta{
+      background:var(--accent);color:white;padding:10px 14px;border-radius:10px;
+      border:0;font-weight:600;cursor:pointer;box-shadow:0 6px 18px rgba(11,120,255,0.18)
+    }
+
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:28px;
+      align-items:center;
+      margin-bottom:36px;
+    }
+    .hero .eyebrow{color:var(--accent-2);font-weight:700;margin-bottom:8px}
+    .hero h1{font-size:30px;margin:0 0 14px}
+    .hero p{color:var(--muted);margin:0 0 20px}
+    .hero .actions{display:flex;gap:12px}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#3aa1ff);color:white;padding:12px 16px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+    .btn-ghost{background:transparent;border:1px solid #e6eefc;padding:10px 14px;border-radius:10px;color:var(--accent);cursor:pointer}
+
+    /* Dashboard mock */
+    .mock {
+      background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.85));
+      border-radius:14px;
+      padding:18px;
+      box-shadow:var(--shadow);
+    }
+    .mock .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    .pill{background:#eef8ff;padding:6px 10px;border-radius:999px;font-weight:700;color:var(--accent)}
+    .chart{height:160px;background:linear-gradient(90deg,#dbefff,#eafffb);border-radius:10px;margin-bottom:10px;display:grid;place-items:center;color:var(--muted)}
+    .list{display:grid;gap:8px}
+    .issue{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:8px;background:#fff;border:1px solid #f1f5f9}
+
+    /* Features */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:36px}
+    .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:var(--shadow);border:1px solid #f3f6fb}
+    .card h3{margin:0 0 8px;font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+
+    /* How it works */
+    .how{display:flex;gap:18px;align-items:flex-start;margin-bottom:36px}
+    .step{flex:1;padding:16px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfdff);box-shadow:var(--shadow)}
+    .step h4{margin:0 0 8px}
+    .step p{margin:0;color:var(--muted)}
+
+    /* CTA banner */
+    .banner{display:flex;justify-content:space-between;align-items:center;padding:18px;border-radius:12px;background:linear-gradient(90deg,#f7fbff,#f2fff9);border:1px solid #e6f6ee}
+    .banner p{margin:0}
+
+    footer{margin-top:40px;padding:26px 0;color:var(--muted);text-align:center;font-size:14px}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .features{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:640px){
+      .features{grid-template-columns:1fr}
+      nav{display:none}
+      header{align-items:flex-start;flex-direction:column}
+      .brand{margin-bottom:8px}
+    }
+
+    /* Form Modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(4,18,29,0.45);display:none;align-items:center;justify-content:center;z-index:40}
+    .modal{background:white;padding:20px;border-radius:12px;max-width:520px;width:92%;box-shadow:0 20px 50px rgba(2,6,23,0.5)}
+    .modal h3{margin-top:0}
+    .form-row{display:flex;gap:8px;margin-bottom:10px}
+    .form-row input, .form-row textarea{flex:1;padding:10px;border-radius:8px;border:1px solid #e6eefc}
+    .modal .modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
+    .close-btn{background:#f3f5f7;border:0;padding:8px 10px;border-radius:8px;cursor:pointer}
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">CC</div>
+        <div>
+          <div style="font-weight:700">FIXDESK</div>
+          <div style="font-size:12px;color:var(--muted)">Smart civic reporting for cities</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div>
+        <button class="cta" id="requestDemo">Request Demo</button>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Hero">
+      <div>
+        <div class="eyebrow">For Municipal Authorities</div>
+        <h1>Reduce complaint backlog & improve citizen trust</h1>
+        <p>AI-powered issue routing, real-time tracking, and transparent updates to citizens — all in one platform that speeds resolution and improves accountability.</p>
+        <div class="actions">
+          <button class="btn-primary" id="demoBtn">See Demo</button>
+          <button class="btn-ghost" onclick="location.href='#features'">Explore features</button>
+        </div>
+        <div style="margin-top:12px;color:var(--muted);font-size:13px">
+          Trusted by municipal teams | Easy integration | Multi-channel reporting
+        </div>
+      </div>
+
+      <aside class="mock" aria-hidden="true">
+        <div class="top">
+          <div class="pill">Dashboard Preview</div>
+          <div style="font-size:13px;color:var(--muted)">Live • City A</div>
+        </div>
+        <div class="chart">Open vs Resolved (30 days)</div>
+        <div class="list">
+          <div class="issue"><div><strong>Pothole — Sector 12</strong><div style="font-size:12px;color:var(--muted)">Reported 2h ago</div></div><div style="color:#0ea5a4;font-weight:700">Open</div></div>
+          <div class="issue"><div><strong>Overflowing bin — Block B</strong><div style="font-size:12px;color:var(--muted)">Reported 12h ago</div></div><div style="color:#94a3b8">In progress</div></div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features" aria-label="Key features">
+      <div class="card">
+        <h3>AI Prioritization</h3>
+        <p>Automatically assess urgency and route to right team for faster resolution.</p>
+      </div>
+      <div class="card">
+        <h3>Multi-channel Reporting</h3>
+        <p>Report via app, SMS/WhatsApp, or voice — accessible for all citizens.</p>
+      </div>
+      <div class="card">
+        <h3>Real-time Tracking</h3>
+        <p>Citizens see status updates; officials track KPIs in one dashboard.</p>
+      </div>
+      <div class="card">
+        <h3>Transparent Notifications</h3>
+        <p>Automated acknowledgments and milestone alerts reduce follow-ups.</p>
+      </div>
+      <div class="card">
+        <h3>Predictive Analytics</h3>
+        <p>Identify hotspots for maintenance before issues escalate.</p>
+      </div>
+      <div class="card">
+        <h3>Easy Integration</h3>
+        <p>Connects with existing municipal systems and workflows securely.</p>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how" class="how" aria-label="How it works">
+      <div class="step">
+        <h4>1. Citizens report</h4>
+        <p>Submit issue with photo, voice, or text from any channel.</p>
+      </div>
+      <div class="step">
+        <h4>2. AI routes</h4>
+        <p>System categorizes and prioritizes, sending to correct department.</p>
+      </div>
+      <div class="step">
+        <h4>3. Resolve & update</h4>
+        <p>Officials act; citizens get real-time updates and confirmation.</p>
+      </div>
+    </section>
+
+    <!-- CTA banner -->
+    <section class="banner" aria-label="Call to action">
+      <div>
+        <p style="font-weight:700">Ready to transform civic issue management?</p>
+        <p style="color:var(--muted);margin-top:6px">Book a free demo and pilot program for your city.</p>
+      </div>
+      <div>
+        <button class="btn-primary" id="bookDemo">Book demo</button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+      <div style="max-width:720px;margin:0 auto">
+        <p style="margin-bottom:6px">Contact: <a href="mailto:hello@FIXDESK.example">hello@FIXDESK.example</a> • Demo: <button onclick="openModal()" style="background:none;border:none;color:var(--accent);text-decoration:underline;cursor:pointer;padding:0">Request</button></p>
+        <p>&copy; <strong>FIXDESK</strong> • Built for smarter, more responsive cities.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-backdrop" id="backdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document">
+      <h3>Request a Demo</h3>
+      <p style="color:var(--muted);margin-top:-6px">Tell us your city and role. We’ll reach out within 2 business days.</p>
+      <div style="margin-top:12px">
+        <div class="form-row">
+          <input id="name" placeholder="Name" />
+          <input id="org" placeholder="Municipality / Org" />
+        </div>
+        <div class="form-row">
+          <input id="email" placeholder="Email" />
+          <input id="phone" placeholder="Phone" />
+        </div>
+        <div>
+          <textarea id="notes" placeholder="Message (city, size, key issues)" rows="3" style="width:100%;border-radius:8px;border:1px solid #eef6ff;padding:10px"></textarea>
+        </div>
+        <div class="modal-actions">
+          <button class="close-btn" onclick="closeModal()">Cancel</button>
+          <button class="btn-primary" onclick="submitDemo()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDNfYa-e1p8b41GETKKbIlICM7Z90LE1QI",
+    authDomain: "fixdesk-278f8.firebaseapp.com",
+    projectId: "fixdesk-278f8",
+    storageBucket: "fixdesk-278f8.firebasestorage.app",
+    messagingSenderId: "1063706094709",
+    appId: "1:1063706094709:web:f3c7ac4774fd06f5ae9c3c",
+    measurementId: "G-MBVKS578XK"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+
+    // Modal controls
+    const backdrop = document.getElementById('backdrop');
+    function openModal(){ backdrop.style.display = 'flex'; backdrop.setAttribute('aria-hidden','false'); }
+    function closeModal(){ backdrop.style.display = 'none'; backdrop.setAttribute('aria-hidden','true'); }
+    document.getElementById('requestDemo').addEventListener('click', openModal);
+    document.getElementById('demoBtn').addEventListener('click', openModal);
+    document.getElementById('bookDemo').addEventListener('click', openModal);
+
+    function submitDemo(){
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      if(!name || !email){
+        alert('Please enter name and email.');
+        return;
+      }
+      // In a real implementation you'd send this to your backend.
+      closeModal();
+      alert('Thanks! We received your demo request. We will contact you soon.');
+    }
+
+    // Close modal on backdrop click
+    backdrop.addEventListener('click', (e)=>{
+      if(e.target === backdrop) closeModal();
+    });
+  </script>
+</body>
+</html>
